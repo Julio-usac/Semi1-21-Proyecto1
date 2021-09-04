@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  hide = true; //para el boton de visibilidad de contraseña
+
   constructor(private router:Router) { }
 
   ngOnInit(): void {

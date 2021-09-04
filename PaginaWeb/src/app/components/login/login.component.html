@@ -1,37 +1,35 @@
   
 <div class="login-fondo">
     <mat-card class= "login-card">
-        <mat-card-title>Iniciar Sesión</mat-card-title>
+        <mat-card-title style="color: #3f51b5;">Iniciar Sesión</mat-card-title>
+        
         <div style="margin-top: 20px;">
-            <mat-form-field style="width: 300px;" color="accent" appearance="fill">
-                <mat-label>Correo</mat-label>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Usuario</mat-label>
                 <!--<input matInput placeholder="ejemplo@correo.com" type="email" [(ngModel)]="correo">-->
-                <input matInput placeholder="ejemplo@correo.com" type="email">
+                <input matInput placeholder="Nombre de usuario">
             </mat-form-field>
         </div>
 
         <div>
-            <mat-form-field style="width: 300px;" color="accent" appearance="fill">
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Contraseña</mat-label>
                 <!--<input matInput type="password" [(ngModel)]="pass">-->
-                <input matInput type="password">
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
         </div>
 
-        <!--<div style="margin-top: 20px;">
-            <mat-radio-group aria-label="Elija el tipo de usuario" [(ngModel)]="tipoLogin">
-                <mat-radio-button value="1">Padre</mat-radio-button>
-                <mat-radio-button value="2">Hijo</mat-radio-button>
-            </mat-radio-group>
-        </div>-->
-
         <div style="margin-top: 20px;">
             <!--<button mat-raised-button color="accent" (click)="login()">Login</button>-->
-            <button mat-raised-button color="accent">Login</button>
+            <button mat-raised-button color="primary">Login</button>
         </div>
 
-        <!--<div style="margin-top: 20px;">
-            <mat-label>¿Usted no tiene cuenta? <a [routerLink]="['singup']">Crear Cuenta</a></mat-label>
-        </div>-->
+        <div style="margin-top: 20px;">
+            <mat-label>¿Usted no tiene cuenta? <a [routerLink]="['/singup']">Crear Cuenta</a></mat-label>
+            <!--<mat-label>¿Usted no tiene cuenta? <a [routerLink]="['singup']">Crear Cuenta</a></mat-label>-->
+        </div>
     </mat-card>
 </div>

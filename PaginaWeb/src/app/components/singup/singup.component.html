@@ -1,0 +1,53 @@
+<div class="singup-fondo">
+    <mat-card class= "singup-card">
+        <mat-card-title style="color: #3f51b5;">Crear Cuenta</mat-card-title>
+        
+        <div style="margin-top: 20px;">
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <!--<input matInput placeholder="ejemplo@correo.com" type="email" [(ngModel)]="correo">-->
+                <input matInput placeholder="Nombre de usuario">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <!--<input matInput placeholder="ejemplo@correo.com" type="email" [(ngModel)]="correo">-->
+                <input matInput placeholder="Nombre">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <!--<input matInput type="password" [(ngModel)]="pass">-->
+                <input matInput [type]="hide1 ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-pressed]="hide1">
+                    <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Confirmar Contraseña</mat-label>
+                <!--<input matInput type="password" [(ngModel)]="pass">-->
+                <input matInput [type]="hide2 ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <!--<button mat-raised-button color="accent" (click)="login()">Login</button>-->
+            <button mat-raised-button color="primary">Registrar</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <mat-label>¿Ya tiene cuenta? <a [routerLink]="['/login']">Iniciar Sesión</a></mat-label>
+            <!--<mat-label>¿Usted no tiene cuenta? <a [routerLink]="['singup']">Crear Cuenta</a></mat-label>-->
+        </div>
+    </mat-card>
+</div>
