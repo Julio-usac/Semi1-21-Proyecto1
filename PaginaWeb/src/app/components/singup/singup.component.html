@@ -47,7 +47,7 @@
                 <button mat-icon-button matSuffix (click)="fileInput.click()">
                     <mat-icon>attach_file</mat-icon>
                 </button>
-                <input hidden (change)="fileEvent($event)" #fileInput type="file">
+                <input hidden (change)="fileEvent($event)" #fileInput type="file" accept=".png, .jpg, .jpeg">
             </mat-form-field>
         </div>
 
