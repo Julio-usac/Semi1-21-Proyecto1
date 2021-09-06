@@ -3,7 +3,7 @@ var express = require('express');
 var AWS = require('aws-sdk');
 var cors = require('cors');
 var uuid = require('uuid');
-
+const bcrypt = require('bcrypt');
 var port = 9000;
 
 var app = express();
@@ -18,21 +18,32 @@ var corsOptions = { origin: true, optionsSuccessStatus: 200 };
 
 const s3 = new AWS.S3(aws_keys.s3);
 
+var mysql =require('mysql');
+var connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'root',
+  password: '1234',
+  database: 'semi',
+  port: 3306
+});
+
 //--------------------------------------------------Prueba---------------------------------------
 
 app.get('/', function (req, res) {
-
-  res.json({ mensaje: 'Hola semi 1 - A'})
+  const hash = bcrypt.hashSync("1234", 1);
+  const lol= bcrypt.compareSync("12345","$2b$04$DqYMNOxq0xY/NNXwGmYkF.Pe9rYA3PiKBU/q.dr53mYvsLrcsvfbS")
+  res.json({ mensaje:lol})
 
 });
 
-app.post('/subirfoto', function (req, res) {
-
-    var id = req.body.id;
+//Crear usuario
+app.post('/crearusuario', function (req, res) {
+   
+    var id = req.body.idimagen + uuid.v4();
     var foto = req.body.foto;     //base64
     //carpeta y nombre que quieran darle a la imagen
     var nombrei = "fotos/" + id + ".png";
-  
+    
     //se convierte la base64 a bytes
     let buff = new Buffer.from(foto, 'base64');
   
@@ -43,8 +54,18 @@ app.post('/subirfoto', function (req, res) {
       ContentType: "image",
       ACL: 'public-read'
     };
-  
+    const hash = bcrypt.hashSync(req.body.pass, 1);
     const putResult = s3.putObject(params).promise();
+    var sql="INSERT INTO usuario(nombre,correo,foto,pass) VALUES ('"+req.body.nombre+"','"+req.body.correo+"','"+id+"',\
+    '"+hash+"');"
+    connection.query(sql,async function(error,result){
+      if(error){
+        console.log("Error al conectar");
+      }else{
+        console.log(JSON.stringify(result));
+      }
+    });
+
     res.json({ mensaje: putResult })
   });
 
