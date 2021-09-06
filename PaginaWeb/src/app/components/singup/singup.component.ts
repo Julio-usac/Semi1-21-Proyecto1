@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 export class SingupComponent implements OnInit {
 
-  hide1 = true;
+  hide1 = true; //para el boton de visibilidad de contraseña
   hide2 = true;
 
   fileName:string = "";
@@ -22,6 +22,7 @@ export class SingupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //---------- Funcion para abrir imagen
   fileEvent(fileInput: Event) {
     let file = (<HTMLInputElement>fileInput.target).files[0];
     var reader = new FileReader();
@@ -33,6 +34,7 @@ export class SingupComponent implements OnInit {
     }
   }
 
+  //---------- Funcion para obtener B64 de la imagen
   handleFile(event) {
     var binaryString = event.target.result;
     this.imagenB64= btoa(binaryString);

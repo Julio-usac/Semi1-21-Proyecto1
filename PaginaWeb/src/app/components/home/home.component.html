@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="home-fondo">
+    <mat-card class= "home-op-card">
+        <img src={{srcFoto}} alt="Wea" width="180" height="180">
+
+        <mat-label>{{name}}</mat-label>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary"  style="width: 160px;" routerLink="/uploadFiles">Subir Archivo</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary"  style="width: 160px;" routerLink="/editFiles">Editar Archivo</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary"  style="width: 160px;" routerLink="/deleteFile">Eliminar Archivo</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary" style="width: 160px;" routerLink="/addFriend">Agregar Amigo</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary"  style="width: 160px;" routerLink="/publicFiles">Ver Archivos Publicos</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="accent"  style="width: 120px;" (click)="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+    </mat-card>
+
+
+</div>

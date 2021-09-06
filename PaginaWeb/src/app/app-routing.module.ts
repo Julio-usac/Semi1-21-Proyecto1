@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { LoginComponent } from './components/login/login.component';
 import { SingupComponent } from './components/singup/singup.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'singup',
     component: SingupComponent
+  },
+  {
+    path : 'home',
+    component: HomeComponent
   }
 ];
 
