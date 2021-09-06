@@ -20,9 +20,9 @@ const s3 = new AWS.S3(aws_keys.s3);
 
 var mysql =require('mysql');
 var connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '1234',
+  host: 'pruebadb.clazasnbabej.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'admin1234',
   database: 'semi',
   port: 3306
 });
