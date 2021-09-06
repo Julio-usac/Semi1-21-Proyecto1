@@ -37,6 +37,16 @@ app.get('/', function (req, res) {
 });
 
 //Crear usuario
+
+/*
+{
+"idimagen":"",
+"foto":"",
+"nombre":"",
+"correo":"",
+"pass":""
+}
+*/
 app.post('/crearusuario', function (req, res) {
    
     var id = req.body.idimagen + uuid.v4();
