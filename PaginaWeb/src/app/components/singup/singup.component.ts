@@ -25,6 +25,7 @@ export class SingupComponent implements OnInit {
   //---------- Funcion para abrir imagen
   fileEvent(fileInput: Event) {
     let file = (<HTMLInputElement>fileInput.target).files[0];
+    this.fileName = file.name;
     alert(file.type);
     var reader = new FileReader();
 
