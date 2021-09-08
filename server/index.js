@@ -20,9 +20,9 @@ const s3 = new AWS.S3(aws_keys.s3);
 
 var mysql =require('mysql');
 var connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '1234',
+  host: 'pruebadb.clazasnbabej.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'admin1234',
   database: 'semi',
   port: 3306
 });
@@ -36,42 +36,57 @@ app.get('/', function (req, res) {
 
 });
 
+app.post('/iniciarsesion', function (req, res) {
+
+  var auth = req.body.auth;
+  var pass = req.body.pass;
+
+  var sql="SELECT pass, foto, nombre, id_usuario FROM usuario WHERE (nombre='"+auth+"' or correo='"+auth+"');"
+  connection.query(sql, async function(error,result){
+    if(error){
+      console.log("Error al conectar");
+      res.json({mensaje:"el usuario no existe"});
+    }else{
+      console.log(JSON.stringify(result));
+      const verificacion= bcrypt.compareSync(pass,result[0].pass)
+      if (verificacion==true){
+
+        res.json({id:result[0].id_usuario, nombre:result[0].nombre, foto:result[0].foto })
+ 
+      }else{
+        res.json({mensaje: "Contraseña no coincide"})
+      }
+    }
+  });
+
+});
+
 //Subir archivo
 /*
 {
-"id":"nombre imagen.png",
+"idarchivo":"nombre archivo.png",
 "archivo":"base64",
-"nombre":"nombre usuario",
+"idusuario":"nombre usuario",
 "tipoar":"publico/privado",
 "tipo":".pdf/.txt/etc"
 }
 
 */
 app.post('/subirarchivo', function (req, res) {
-  var id = req.body.id;
+  var id = req.body.idarchivo;
   var archivo = req.body.archivo;   
   var nombrei = "fotos/" + id;
   let buff = new Buffer.from(archivo, 'base64');
-  let usuario=0;
-  var sql="SELECT id_usuario FROM usuario WHERE nombre='"+req.body.nombre+"';"
-    connection.query(sql, async function(error,result){
-      if(error){
-        console.log("Error al conectar");
-      }else{
-        console.log(JSON.stringify(result));
-        usuario=result[0].id_usuario;
-        console.log(usuario);
-        sql="INSERT INTO archivo(nombre,tipo,id_usu) VALUES ('"+req.body.id+"','"+req.body.tipoar+"',"+usuario+");"
-        connection.query(sql, async function(error,result){
-          if(error){
-            console.log("Error al conectar");
-          }else{
-            console.log(JSON.stringify(result));
-          }
-        });
-      }
-    });
-  
+
+  var sql="INSERT INTO archivo(nombre,tipo,id_usu) VALUES ('"+id+"','"+req.body.tipoar+"',"+req.body.idusuario+");"
+  connection.query(sql, async function(error,result){
+    if(error){
+      console.log("Error al conectar");
+    }else{
+      console.log(JSON.stringify(result));
+    }
+  });
+
   if (req.body.tipo==".jpg" || req.body.tipo==".jpeg" || req.body.tipo==".png"){
     const params = {
       Bucket: "archivos-21-p1",
@@ -112,9 +127,9 @@ app.post('/subirarchivo', function (req, res) {
 
 /*
 {
-"idimagen":"",
-"foto":"",
-"nombre":"",
+"idimagen":"nombre imagen",
+"foto":"base64",
+"nombre":"nombre del usuario",
 "correo":"",
 "pass":""
 }
@@ -122,7 +137,7 @@ app.post('/subirarchivo', function (req, res) {
 
 app.post('/crearusuario', function (req, res) {
    
-    var id = + uuid.v4() + req.body.idimagen ;
+    var id =  uuid.v4() + req.body.idimagen ;
     var foto = req.body.foto;     //base64
     //carpeta y nombre que quieran darle a la imagen
     var nombrei = "fotos/" + id;
