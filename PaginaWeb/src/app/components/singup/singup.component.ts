@@ -74,7 +74,14 @@ export class SingupComponent implements OnInit {
       return;
     }
 
-    /*let respuesta = await this.RegistroService.singup(this.fileName, this.imagenB64, this.usuario, this.email, this.pass);
-    alert(respuesta);*/
+    let respuesta = await this.RegistroService.singup(this.fileName, this.imagenB64, this.usuario, this.email, this.pass);
+    const obj = JSON.parse(JSON.stringify(respuesta));
+    
+    if (obj.mensaje == 'Registrado') {
+      alert('Usuario Registrado!');
+      this.router.navigate(['login']);
+    } else {
+      alert('Error al registrar usuario!');
+    }
   }
 }
