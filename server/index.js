@@ -43,7 +43,7 @@ app.post('/iniciarsesion', function (req, res) {
 
   var sql="SELECT pass, foto, nombre, id_usuario FROM usuario WHERE (nombre='"+auth+"' or correo='"+auth+"');"
   connection.query(sql, async function(error,result){
-    if(error){
+    if(error || result.length==0){
       console.log("Error al conectar");
       res.json({mensaje:"el usuario no existe"});
     }else{
