@@ -5,19 +5,27 @@
         <div style="margin-top: 20px;">
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Usuario</mat-label>
-                <!--<input matInput placeholder="ejemplo@correo.com" type="email" [(ngModel)]="correo">-->
-                <input matInput placeholder="Nombre de usuario">
+                <input matInput placeholder="Nombre de usuario" [(ngModel)]="usuario">
                 <button mat-icon-button matSuffix>
-                    <mat-icon>border_color</mat-icon>
+                    <mat-icon>account_circle</mat-icon>
                 </button>
             </mat-form-field>
         </div>
         
         <div>
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input matInput placeholder="E-mail" [(ngModel)]="email">
+                <button mat-icon-button matSuffix>
+                    <mat-icon>email</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <!--<input matInput type="password" [(ngModel)]="pass">-->
-                <input matInput [type]="hide1 ? 'password' : 'text'">
+                <input matInput [type]="hide1 ? 'password' : 'text'" [(ngModel)]="pass">
                 <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-pressed]="hide1">
                     <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -27,8 +35,7 @@
         <div>
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Confirmar Contraseña</mat-label>
-                <!--<input matInput type="password" [(ngModel)]="pass">-->
-                <input matInput [type]="hide2 ? 'password' : 'text'">
+                <input matInput [type]="hide2 ? 'password' : 'text'" [(ngModel)]="passC">
                 <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-pressed]="hide2">
                     <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -47,13 +54,11 @@
         </div>
 
         <div style="margin-top: 20px;">
-            <!--<button mat-raised-button color="accent" (click)="login()">Login</button>-->
-            <button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="primary" (click)="singup()">Registrar</button>
         </div>
 
         <div style="margin-top: 20px;">
             <mat-label>¿Ya tiene cuenta? <a [routerLink]="['/login']">Iniciar Sesión</a></mat-label>
-            <!--<mat-label>¿Usted no tiene cuenta? <a [routerLink]="['singup']">Crear Cuenta</a></mat-label>-->
         </div>
     </mat-card>
 </div>

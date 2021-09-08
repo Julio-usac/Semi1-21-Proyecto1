@@ -1,3 +1,4 @@
+import { RegistroService } from '../../services/registro.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,12 +13,15 @@ export class SingupComponent implements OnInit {
   hide1 = true; //para el boton de visibilidad de contraseña
   hide2 = true;
 
-  fileName:string = "";
-
   //vars
-  imagenB64:string = "S;G";
+  usuario:string = "";
+  email:string = "";
+  pass:string = "";
+  passC:string = "";
+  fileName:string = "";
+  imagenB64:string = "";
   
-  constructor(private router:Router) { }
+  constructor(public RegistroService: RegistroService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +30,7 @@ export class SingupComponent implements OnInit {
   fileEvent(fileInput: Event) {
     let file = (<HTMLInputElement>fileInput.target).files[0];
     this.fileName = file.name;
-    alert(file.type);
+    
     var reader = new FileReader();
 
     reader.onload = this.handleFile.bind(this);
@@ -41,5 +45,36 @@ export class SingupComponent implements OnInit {
     var binaryString = event.target.result;
     this.imagenB64= btoa(binaryString);
     console.log(this.imagenB64);
+  }
+
+  //---------- Funcion para registrar usuario
+  async singup(){
+    if (this.usuario == "") {
+      alert('Campo Usuario vacio!');
+      return;
+    }
+
+    if (this.email == "") {
+      alert('Campo Correo vacio!');
+      return;
+    }
+
+    if (this.pass == "") {
+      alert('Campo Contraseña vacio!');
+      return;
+    }
+
+    if (this.passC != this.pass) {
+      alert('Las contraseñas no coinciden!');
+      return;
+    }
+
+    if (this.imagenB64 == "") {
+      alert('Campo Foto vacio!');
+      return;
+    }
+
+    /*let respuesta = await this.RegistroService.singup(this.fileName, this.imagenB64, this.usuario, this.email, this.pass);
+    alert(respuesta);*/
   }
 }
