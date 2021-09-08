@@ -24,13 +24,17 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
-
     let respuesta = await this.AccesoService.login(this.credencial, this.pass);
     const obj = JSON.parse(JSON.stringify(respuesta));
 
-    console.log(obj);
-    console.log(obj.length)
-    /*localStorage.setItem('id', '1');
-    this.router.navigate(['home']);*/
+    var size = Object.keys(obj).length;
+    if (size == 1) {
+      alert('Error');
+    } else if (size == 3) {
+      localStorage.setItem('id', obj.id);
+      localStorage.setItem('user', obj.nombre);
+      localStorage.setItem('pick', obj.foto);
+      this.router.navigate(['home']);
+    }
   }
 }
