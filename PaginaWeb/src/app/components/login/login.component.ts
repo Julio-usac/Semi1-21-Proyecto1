@@ -24,6 +24,16 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
+    if (this.credencial == "") {
+      alert('Campo Credencial vacio!');
+      return;
+    }
+
+    if (this.pass == "") {
+      alert('Campo Contraseña vacio!');
+      return;
+    }
+
     let respuesta = await this.AccesoService.login(this.credencial, this.pass);
     const obj = JSON.parse(JSON.stringify(respuesta));
 
