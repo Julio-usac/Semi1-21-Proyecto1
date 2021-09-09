@@ -73,7 +73,7 @@ app.post('/iniciarsesion', function (req, res) {
 
 */
 app.post('/subirarchivo', function (req, res) {
-  var id = req.body.idarchivo;
+  var id = uuid.v4() + req.body.idarchivo;
   var archivo = req.body.archivo;   
   var nombrei = "fotos/" + id;
   let buff = new Buffer.from(archivo, 'base64');
