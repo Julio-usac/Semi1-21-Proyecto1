@@ -17,7 +17,7 @@
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Nombre archivo</mat-label>
                 <input matInput placeholder="Nombre Archivo" [(ngModel)]="newFileName">
-                <button mat-icon-button matSuffix>
+                <button mat-icon-button matSuffix tabindex="-1">
                     <mat-icon>border_color</mat-icon>
                 </button>
             </mat-form-field>
@@ -30,11 +30,11 @@
             </mat-radio-group>
         </div>
 
-        <div>
+        <div style="margin-top: 20px;">
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Contraseña</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide" tabindex="-1">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
