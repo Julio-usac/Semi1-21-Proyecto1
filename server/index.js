@@ -30,9 +30,11 @@ var connection = mysql.createConnection({
 //--------------------------------------------------Prueba---------------------------------------
 
 app.get('/', function (req, res) {
+  /*
   const hash = bcrypt.hashSync("1234", 1);
   const lol= bcrypt.compareSync("12345","$2b$04$DqYMNOxq0xY/NNXwGmYkF.Pe9rYA3PiKBU/q.dr53mYvsLrcsvfbS")
-  res.json({ mensaje:lol})
+  */
+  res.json({ mensaje:"funciono"})
 
 });
 
@@ -66,7 +68,7 @@ app.post('/iniciarsesion', function (req, res) {
 {
 "idarchivo":"nombre archivo.png",
 "archivo":"base64",
-"idusuario":"nombre usuario",
+"idusuario":"id usuario",
 "tipoar":"publico/privado",
 "tipo":".pdf/.txt/etc"
 }
@@ -78,7 +80,7 @@ app.post('/subirarchivo', function (req, res) {
   var nombrei = "fotos/" + id;
   let buff = new Buffer.from(archivo, 'base64');
 
-  var sql="INSERT INTO archivo(nombre,tipo,id_usu) VALUES ('"+id+"','"+req.body.tipoar+"',"+req.body.idusuario+");"
+  var sql="INSERT INTO archivo(id_archivo,nombre,tipo,id_usu) VALUES ('"+req.body.idarchivo+"','"+id+"','"+req.body.tipoar+"',"+req.body.idusuario+");"
   connection.query(sql, async function(error,result){
     if(error){
       console.log("Error al conectar");
