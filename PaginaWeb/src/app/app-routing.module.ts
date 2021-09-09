@@ -25,7 +25,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path : 'upload',
+    path : 'uploadFiles',
     component: UploadComponent
   }
 ];

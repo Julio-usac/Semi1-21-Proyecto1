@@ -7,13 +7,13 @@ import { Injectable } from '@angular/core';
 
 export class SubirService {
 
-  url:string = "";
+  url:string = "http://18.221.55.167:9000/subirarchivo";
 
   constructor(private httpClient: HttpClient) { }
 
   upload(idarchivo, archivo, idusuario, tipoar, tipo){
     const data = { idarchivo, archivo, idusuario, tipoar, tipo };
 
-    console.log(data);
+    return this.httpClient.post(this.url, data).toPromise();
   }
 }

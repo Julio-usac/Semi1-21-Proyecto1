@@ -19,7 +19,7 @@ export class UploadComponent implements OnInit {
   fileName:string = "";
   archivoB64:string = "";
   newFileName:string = "";
-  vis:string = "1";
+  vis:string = "privado";
   pass:string = "";
 
   constructor(public SubirService:SubirService, private router:Router) { }
@@ -52,7 +52,6 @@ export class UploadComponent implements OnInit {
   handleFile(event) {
     var binaryString = event.target.result;
     this.archivoB64= btoa(binaryString);
-    console.log(this.archivoB64);
   }
 
   cerrarSesion() {
@@ -99,5 +98,6 @@ export class UploadComponent implements OnInit {
     let respuesta = await this.SubirService.upload(this.newFileName, this.archivoB64, this.idUsuario, this.vis, this.ext);
     const obj = JSON.parse(JSON.stringify(respuesta));
     
+    console.log(obj);
   }
 }

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class AccesoService {
 
-  url:string = "http://3.139.93.117:9000/iniciarsesion";
+  url:string = "http://18.221.55.167:9000/iniciarsesion";
 
   constructor(private httpClient: HttpClient) { }
 
