@@ -17,14 +17,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.idUsuario = localStorage.getItem('id')
-    this.srcFoto = "https://archivos-21-p1.s3.us-east-2.amazonaws.com/fotos/" + localStorage.getItem('pick');
-    this.nombreUsuario = localStorage.getItem('user');
 
-    if (this.idUsuario != '0' && this.idUsuario != 'S;G'){
-
-    } else {
+    if (this.idUsuario == '0' || this.idUsuario == 'S;G') {
       alert('Sesión caducada! Inicia sesión nuevamente!');
       this.cerrarSesion();
+    } else {
+      this.srcFoto = "https://archivos-21-p1.s3.us-east-2.amazonaws.com/fotos/" + localStorage.getItem('pick');
+      this.nombreUsuario = localStorage.getItem('user');
     }
   }
 

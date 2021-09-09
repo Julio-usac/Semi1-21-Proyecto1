@@ -11,19 +11,22 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SingupComponent } from './components/singup/singup.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SingupComponent
+    SingupComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { SingupComponent } from './components/singup/singup.component';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatRadioModule,
     MatCardModule,
     MatIconModule
 
