@@ -44,7 +44,6 @@ export class SingupComponent implements OnInit {
   handleFile(event) {
     var binaryString = event.target.result;
     this.imagenB64= btoa(binaryString);
-    console.log(this.imagenB64);
   }
 
   //---------- Funcion para registrar usuario

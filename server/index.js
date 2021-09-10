@@ -44,6 +44,7 @@ app.post('/iniciarsesion', function (req, res) {
   var pass = req.body.pass;
 
   var sql="SELECT pass, foto, nombre, id_usuario FROM usuario WHERE (nombre='"+auth+"' or correo='"+auth+"');"
+  
   connection.query(sql, async function(error,result){
     if(error || result.length==0){
       console.log("Error al conectar");
@@ -60,7 +61,6 @@ app.post('/iniciarsesion', function (req, res) {
       }
     }
   });
-
 });
 
 //Subir archivo
@@ -141,10 +141,7 @@ app.post('/crearusuario', function (req, res) {
    
     var id =  uuid.v4() + req.body.idimagen ;
     var foto = req.body.foto;     //base64
-    //carpeta y nombre que quieran darle a la imagen
     var nombrei = "fotos/" + id;
-    
-    //se convierte la base64 a bytes
     let buff = new Buffer.from(foto, 'base64');
   
     const params = {
@@ -154,20 +151,21 @@ app.post('/crearusuario', function (req, res) {
       ContentType: "image",
       ACL: 'public-read'
     };
+
     const hash = bcrypt.hashSync(req.body.pass, 1);
     const putResult = s3.putObject(params).promise();
-    var sql="INSERT INTO usuario(nombre,correo,foto,pass) VALUES ('"+req.body.nombre+"','"+req.body.correo+"','"+id+"',\
-    '"+hash+"');"
+    
+    var sql="INSERT INTO usuario(nombre,correo,foto,pass) VALUES ('"+req.body.nombre+"','"+req.body.correo+"','"+id+"','"+hash+"');"
+    
     connection.query(sql,async function(error,result){
       if(error){
         console.log("Error al conectar");
+        res.json({ mensaje: "Error"})
       }else{
         console.log(JSON.stringify(result));
         res.json({ mensaje: "Registrado"})
       }
     });
-    
-    
   });
 
 //NO ES NECESARIO PARA SU PROYECTO PERO PUEDEN USARLO obtener objeto en s3
