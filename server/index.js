@@ -75,13 +75,14 @@ app.post('/iniciarsesion', function (req, res) {
 
 */
 app.post('/subirarchivo', function (req, res) {
-  
+
   var id = uuid.v4() + req.body.idarchivo;
   var archivo = req.body.archivo;   
   var nombrei = "fotos/" + id;
   let buff = new Buffer.from(archivo, 'base64');
 
   var sql="INSERT INTO archivo(id_archivo,nombre,tipo,id_usu) VALUES ('"+req.body.idarchivo+"','"+id+"','"+req.body.tipoar+"',"+req.body.idusuario+");"
+  
   connection.query(sql, async function(error,result){
     if(error){
       console.log("Error al conectar");
@@ -123,8 +124,6 @@ app.post('/subirarchivo', function (req, res) {
   }else{
     res.json({ mensaje: "error" })
   }
-  
- 
 });
 //Crear usuario
 

@@ -27,10 +27,10 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
     this.idUsuario = localStorage.getItem('id')
 
-    /*if (this.idUsuario == '0' || this.idUsuario == 'S;G') {
+    if (this.idUsuario == '0' || this.idUsuario == 'S;G') {
       alert('Sesión caducada! Inicia sesión nuevamente!');
       this.cerrarSesion();
-    }*/
+    }
   }
 
   //---------- Funcion para abrir imagen
@@ -98,6 +98,16 @@ export class UploadComponent implements OnInit {
     let respuesta = await this.SubirService.upload(this.newFileName, this.archivoB64, this.idUsuario, this.vis, this.ext);
     const obj = JSON.parse(JSON.stringify(respuesta));
     
-    console.log(obj);
+    if (obj.mensaje == "listo") {
+      alert('Archivo subido!');
+    } else if (obj.mensaje == "error") {
+      alert('Formato de archivo invalido!');
+    }
+
+    this.fileName = "";
+    this.archivoB64 = "";
+    this.newFileName = "";
+    this.vis = "privado";
+    this.pass = "";
   }
 }
