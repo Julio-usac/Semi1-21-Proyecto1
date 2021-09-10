@@ -36,10 +36,14 @@ export class LoginComponent implements OnInit {
 
     let respuesta = await this.AccesoService.login(this.credencial, this.pass);
     const obj = JSON.parse(JSON.stringify(respuesta));
-
     var size = Object.keys(obj).length;
+    
     if (size == 1) {
-      alert('Error');
+      if (obj.mensaje == "el usuario no existe") {
+        alert("El usuario no existe!");
+      } else if (obj.mensaje == "Contraseña no coincide") {
+        alert("Contraseña incorrecta!");
+      }
     } else if (size == 3) {
       localStorage.setItem('id', obj.id);
       localStorage.setItem('user', obj.nombre);
