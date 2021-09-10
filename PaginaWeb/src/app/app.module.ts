@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SingupComponent } from './components/singup/singup.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { DeleteComponent } from './components/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UploadComponent } from './components/upload/upload.component';
     LoginComponent,
     HomeComponent,
     SingupComponent,
-    UploadComponent
+    UploadComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,

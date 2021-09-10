@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class SubirService {
 
-  url:string = "http://18.221.55.167:9000/subirarchivo";
+  url:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/subirarchivo";
 
   constructor(private httpClient: HttpClient) { }
 
