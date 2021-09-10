@@ -34,7 +34,7 @@
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Contraseña</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide" tabindex="-1">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
@@ -46,9 +46,8 @@
 
         <div style="margin-top: 20px;">
             <button mat-mini-fab color="accent" routerLink="/home">
-              <mat-icon>arrow_back</mat-icon>
+                <mat-icon>arrow_back</mat-icon>
             </button>
-          </div>
-
+        </div>
     </mat-card>
 </div>
