@@ -1,1 +1,35 @@
-<p>delete works!</p>
+<div class="delete-fondo">
+    <mat-card class= "delete-card">
+        <mat-card-title style="color: #3f51b5;">Eliminar Archivo</mat-card-title>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Archivo</mat-label>
+                <mat-select>
+                    <mat-option value="Masculino">Masculino</mat-option>
+                    <mat-option value="Femenino">Femenino</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary" (click)="delete()">Eliminar</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-mini-fab color="accent" routerLink="/home">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</div>

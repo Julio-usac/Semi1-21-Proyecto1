@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SingupComponent } from './components/singup/singup.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { DeleteComponent } from './components/delete/delete.component';
+import { UpdateComponent } from './components/update/update.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { DeleteComponent } from './components/delete/delete.component';
     HomeComponent,
     SingupComponent,
     UploadComponent,
-    DeleteComponent
+    DeleteComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { DeleteComponent } from './components/delete/delete.component';
 
     MatFormFieldModule,
     MatButtonModule,
+    MatSelectModule,
     MatInputModule,
     MatRadioModule,
     MatCardModule,
