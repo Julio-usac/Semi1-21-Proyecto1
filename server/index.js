@@ -38,6 +38,59 @@ app.get('/', function (req, res) {
 
 });
 
+
+app.post('/archivoseliminar', function (req, res) {
+
+
+  var sql="select id_archivo as idarchivo, archivo.nombre from usuario, archivo where id_usuario="+req.body.idusuario+";"
+  
+  connection.query(sql, async function(error,result){
+    if(error || result.length==0){
+      console.log("Error al conectar");
+      res.json({mensaje:"el usuario no existe"});
+    }else{
+      console.log(JSON.stringify(result));
+      res.json(result);
+    }
+  });
+});
+
+
+app.post('/eliminararchivo', function (req, res) {
+
+  var sql="SELECT pass FROM usuario WHERE id_usuario="+req.body.idusuario+";"
+
+  connection.query(sql, async function(error,result){
+    if(error || result.length==0){
+      console.log("Error al conectar");
+      res.json({mensaje:"error1"});
+    }else{
+      const verificacion= bcrypt.compareSync(req.body.pass,result[0].pass)
+      if (verificacion==true){
+
+        sql="delete from archivo where id_archivo='"+req.body.idarchivo+"';"
+        connection.query(sql, async function(error,result){
+          if(error || result.length==0){
+            console.log("Error al conectar");
+            res.json({mensaje:"error2"});
+          }else{
+            console.log(JSON.stringify(result));
+            res.json({mensaje:"listo"});
+          }
+        });
+ 
+      }else{
+        res.json({mensaje: "error"})
+      }
+      
+    }
+  });
+  
+  
+  
+});
+
+
 app.post('/iniciarsesion', function (req, res) {
 
   var auth = req.body.auth;
