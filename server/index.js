@@ -82,12 +82,8 @@ app.post('/eliminararchivo', function (req, res) {
       }else{
         res.json({mensaje: "error"})
       }
-      
     }
   });
-  
-  
-  
 });
 
 

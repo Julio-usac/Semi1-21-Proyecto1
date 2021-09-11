@@ -5,9 +5,8 @@
         <div>
             <mat-form-field style="width: 300px;" color="primary" appearance="fill">
                 <mat-label>Archivo</mat-label>
-                <mat-select>
-                    <mat-option value="Masculino">Masculino</mat-option>
-                    <mat-option value="Femenino">Femenino</mat-option>
+                <mat-select [(ngModel)]="idFile">
+                    <mat-option *ngFor="let archivo of archivos" [value]="archivo.idarchivo">{{archivo.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

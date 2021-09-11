@@ -13,8 +13,10 @@ export class DeleteComponent implements OnInit {
   hide = true;
 
   idUsuario: string = 'S;G';
+  respuesta;
+  archivos;
 
-  idfile:string = "";
+  idFile:string = "";
   pass:string = "";
 
   constructor(public EliminarService:EliminarService, private router:Router) { }
@@ -26,6 +28,8 @@ export class DeleteComponent implements OnInit {
       alert('Sesión caducada! Inicia sesión nuevamente!');
       this.cerrarSesion();
     }
+
+    this.obtenerArchivos();
   }
 
   cerrarSesion() {
@@ -33,7 +37,41 @@ export class DeleteComponent implements OnInit {
     this.router.navigate(['login'])
   }
 
-  async delete(){
+  async obtenerArchivos(){
+    this.respuesta = await this.EliminarService.getArchivos(this.idUsuario);
+    this.archivos = JSON.parse(JSON.stringify(this.respuesta));
+    var size = Object.keys(this.archivos).length;
+    console.log(size);
+    console.log(this.archivos);
 
+    if (this.archivos.mensaje) {
+      alert('Error!');
+      return;
+    }
+  }
+
+  async delete(){
+    if (this.idFile == "") {
+      alert('Campo Archivo vacio!');
+      return;
+    }
+
+    if (this.pass == "") {
+      alert('Campo Contraseña vacio!');
+      return;
+    }
+
+    let respuesta = await this.EliminarService.delete(this.idUsuario, this.idFile, this.pass);
+    const obj = JSON.parse(JSON.stringify(respuesta));
+    
+    if (obj.mensaje == "error") {
+      alert('Contraseña incorrecta!');
+    } else if (obj.mensaje == "error1" || obj.mensaje == "error2") {
+      alert('Error');
+      this.router.navigate(['deleteFiels']);
+    }else if (obj.mensaje == "listo") {
+      alert('Archivo borrado!');
+      this.router.navigate(['deleteFiles']);
+    }
   }
 }
