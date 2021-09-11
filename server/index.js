@@ -42,12 +42,12 @@ app.get('/', function (req, res) {
 app.post('/archivoseliminar', function (req, res) {
 
 
-  var sql="select id_archivo as idarchivo, archivo.nombre from usuario, archivo where id_usuario="+req.body.idusuario+";"
+  var sql="select id_archivo as idarchivo, nombre from archivo where id_usu="+req.body.idusuario+";"
   
   connection.query(sql, async function(error,result){
-    if(error || result.length==0){
+    if(error){
       console.log("Error al conectar");
-      res.json({mensaje:"el usuario no existe"});
+      res.json({mensaje:"error"});
     }else{
       console.log(JSON.stringify(result));
       res.json(result);
