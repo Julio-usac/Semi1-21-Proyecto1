@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
 app.post('/getarchivos', function (req, res) {
 
 
-  var sql="select id_archivo as idarchivo, archivo.nombre from usuario, archivo Where id_usuario="+req.body.idusuario+" and id_usuario=id_usu and tipo="+req.body.tipo+";";
+  var sql="select id_archivo as idarchivo, archivo.nombre from usuario, archivo Where id_usuario="+req.body.idusuario+" and id_usuario=id_usu and tipo='"+req.body.tipo+"';";
   connection.query(sql, async function(error,result){
     if(error){
       console.log("Error al conectar");
