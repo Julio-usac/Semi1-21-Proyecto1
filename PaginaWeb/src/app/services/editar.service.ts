@@ -7,10 +7,8 @@ import { Injectable } from '@angular/core';
 
 export class EditarService {
 
-  /*url1:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/archivoseditar";
-  url2:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/editararchivo";*/
-  url1:string = "http://localhost:9000/archivoseditar";
-  url2:string = "http://localhost:9000/editararchivo";
+  url1:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/archivoseditar";
+  url2:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/editararchivo";
 
   constructor(private httpClient: HttpClient) { }
 
