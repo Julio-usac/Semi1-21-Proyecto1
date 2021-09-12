@@ -38,6 +38,23 @@ app.get('/', function (req, res) {
 
 });
 
+
+app.post('/getusuario', function (req, res) {
+
+
+  var sql="select usuario.nombre, usuario.foto, count(tipo) as cantidad from usuario, archivo where id_usuario=id_usu and tipo='publico'\
+   and usuario.nombre='"+req.body.nombre+"';";
+  connection.query(sql, async function(error,result){
+    if(error){
+      console.log("Error al conectar");
+      res.json({mensaje:"error"});
+    }else{
+      console.log(JSON.stringify(result));
+      res.json(result);
+    }
+  });
+});
+
 app.post('/getarchivos', function (req, res) {
 
 
