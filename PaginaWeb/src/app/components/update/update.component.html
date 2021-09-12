@@ -1,1 +1,51 @@
-<p>update works!</p>
+<div class="update-fondo">
+    <mat-card class= "update-card">
+        <mat-card-title style="color: #3f51b5;">Editar Archivo</mat-card-title>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Archivo</mat-label>
+                <mat-select [(ngModel)]="idFile" (selectionChange)="selected($event)">
+                    <mat-option *ngFor="let archivo of archivos" [value]="archivo.idarchivo">{{archivo.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre Archivo" [(ngModel)]="nombre">
+                <button mat-icon-button matSuffix tabindex="-1">
+                    <mat-icon>border_color</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-radio-group style="width: 300px;" color="primary" [(ngModel)]="tipo">
+                <mat-radio-button style="margin: 10px;" value="privado">Privado</mat-radio-button>
+                <mat-radio-button style="margin: 10px;" value="publico">Publico</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <mat-form-field style="width: 300px;" color="primary" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pass">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary" (click)="update()">Editar</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-mini-fab color="accent" routerLink="/home">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</div>

@@ -6,6 +6,7 @@ import { SingupComponent } from './components/singup/singup.component';
 import { HomeComponent } from './components/home/home.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { DeleteComponent } from './components/delete/delete.component';
+import { UpdateComponent } from './components/update/update.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'deleteFiles',
     component: DeleteComponent
+  },
+  {
+    path: 'updateFiles',
+    component: UpdateComponent
   }
 ];
 

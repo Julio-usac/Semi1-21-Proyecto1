@@ -42,12 +42,12 @@ app.get('/', function (req, res) {
 app.post('/archivoseditar', function (req, res) {
 
 
-  var sql="select id_archivo as idarchivo, archivo.nombre, archivo.tipo from usuario, archivo where id_usuario="+req.body.idusuario+";"
+  var sql="select id_archivo as idarchivo, nombre, tipo from archivo where id_usu="+req.body.idusuario+";"
   
   connection.query(sql, async function(error,result){
-    if(error || result.length==0){
+    if(error){
       console.log("Error al conectar");
-      res.json({mensaje:"el usuario no existe"});
+      res.json({mensaje:"error"});
     }else{
       console.log(JSON.stringify(result));
       res.json(result);
@@ -66,39 +66,39 @@ app.post('/editararchivo', function (req, res) {
     }else{
       const verificacion= bcrypt.compareSync(req.body.pass,result[0].pass)
       if (verificacion==true){
-        if(req.body.nuevonombre.length>0){
+        
+        //if(req.body.nuevonombre.length>0){
           sql="update archivo set nombre='"+req.body.nuevonombre+"' where id_archivo='"+req.body.idarchivo+"';"
           connection.query(sql, async function(error,result){
             if(error){
-              console.log("error al conectar");
-              res.json({mensaje:"error"});
+              console.log("error al conectar2");
+              res.json({mensaje:"error2"});
+              return;
             }else{
               console.log("cambio de nombre");
             }
           });
-        }
-        if(req.body.tipo.length>0){
+        //}
+        //if(req.body.tipo.length>0){
           sql="update archivo set tipo='"+req.body.tipo+"'where id_archivo='"+req.body.idarchivo+"';"
           connection.query(sql, async function(error,result){
             if(error){
               console.log("Error al conectar3");
-              res.json({mensaje:"error"});
+              res.json({mensaje:"error3"});
+              return;
             }else{
-              console.log(JSON.stringify(result));
-              res.json({mensaje:"listo2"});
+              console.log("cambio de tipo");
             }
           });
-        }else{
+        //}else{
           res.json({mensaje:"listo"});
-        }
-        
+        //}
+
       }else{
         res.json({mensaje: "error"})
       }
-      
     }
   });
- 
 });
 
 app.post('/archivoseliminar', function (req, res) {

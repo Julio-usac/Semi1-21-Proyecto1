@@ -41,11 +41,9 @@ export class DeleteComponent implements OnInit {
     this.respuesta = await this.EliminarService.getArchivos(this.idUsuario);
     this.archivos = JSON.parse(JSON.stringify(this.respuesta));
     var size = Object.keys(this.archivos).length;
-    console.log(size);
-    console.log(this.archivos);
-
+    
     if (this.archivos.mensaje) {
-      alert('Error!');
+      alert('Error de conexion!');
       return;
     }
   }
