@@ -67,11 +67,13 @@ export class DeleteComponent implements OnInit {
     if (obj.mensaje == "error") {
       alert('Contraseña incorrecta!');
     } else if (obj.mensaje == "error1" || obj.mensaje == "error2") {
-      alert('Error');
-      this.router.navigate(['deleteFiels']);
+      alert('Error de conexion!');
     }else if (obj.mensaje == "listo") {
       alert('Archivo borrado!');
-      this.router.navigate(['deleteFiles']);
+      
+      this.idFile = "";
+      this.pass = "";
+      this.obtenerArchivos();
     }
   }
 }
