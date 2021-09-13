@@ -30,10 +30,18 @@
     </mat-card>
 
     <mat-card class= "home-pub-card">
-
+        <div class="pub-div" *ngFor="let archivoPublico of archivosPublicos">
+            <img src={{getLink(archivoPublico.idarchivo)}}  width="180" height="180">
+            <br>
+            <a href={{getLinkRef(archivoPublico.idarchivo)}} target="_blank">{{archivoPublico.nombre}}</a>
+        </div>
     </mat-card>
 
     <mat-card class= "home-priv-card">
-
+        <div class="pub-div" *ngFor="let archivoPrivado of archivosPrivados">
+            <img src={{getLink(archivoPrivado.idarchivo)}} width="180" height="180">
+            <br>
+            <a href={{getLinkRef(archivoPrivado.idarchivo)}} target="_blank">{{archivoPrivado.nombre}}</a>
+        </div>
     </mat-card>
 </div>

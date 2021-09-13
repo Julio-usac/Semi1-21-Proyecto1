@@ -16,21 +16,30 @@
 
 .home-pub-card {
     width: 70%;
-    height: 40%;
-    overflow-x: auto;
+    height: 232px;
+    overflow: auto;
     background-color: #EBF5FB;
     position: fixed;
     top: 5%;
     left: 25%;
+    white-space: nowrap;
     text-align: center;
+}
+
+.pub-div {
+    width: 220px;
+    height: 220px;
+    display: inline-block;
 }
 
 .home-priv-card {
     width: 70%;
-    height: 35%;
+    height: 220px;
+    overflow: auto;
     background-color: #EBF5FB;
     position: fixed;
     top: 55%;
     left: 25%;
+    white-space: nowrap;
     text-align: center;
 }
