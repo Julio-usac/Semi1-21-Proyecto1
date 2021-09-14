@@ -1,0 +1,31 @@
+<div class="friends-fondo">
+    <mat-card class= "friends-card">
+
+        <div>
+            <mat-form-field style="width: 700px;" color="primary" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre Usuario" [(ngModel)]="buscar">
+                <button mat-icon-button matSuffix>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <mat-card-title style="color: #3f51b5;">Usuarios</mat-card-title>
+
+        <div>
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile>1</mat-grid-tile>
+                <mat-grid-tile>2</mat-grid-tile>
+                <mat-grid-tile>3</mat-grid-tile>
+                <mat-grid-tile>4</mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-mini-fab color="accent" routerLink="/home">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</div>

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +23,7 @@ import { SingupComponent } from './components/singup/singup.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { DeleteComponent } from './components/delete/delete.component';
 import { UpdateComponent } from './components/update/update.component';
+import { FriendsComponent } from './components/friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { UpdateComponent } from './components/update/update.component';
     SingupComponent,
     UploadComponent,
     DeleteComponent,
-    UpdateComponent
+    UpdateComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { UpdateComponent } from './components/update/update.component';
     FormsModule,
 
     MatFormFieldModule,
+    MatGridListModule,
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
