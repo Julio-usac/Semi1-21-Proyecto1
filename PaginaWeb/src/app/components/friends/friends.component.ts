@@ -20,7 +20,7 @@ export class FriendsComponent implements OnInit {
   constructor(public AmigosService:AmigosService, private router:Router) { }
 
   ngOnInit(): void {
-    this.idUsuario = localStorage.getItem('id')
+    this.idUsuario = localStorage.getItem('id');
 
     /*if (this.idUsuario == '0' || this.idUsuario == 'S;G') {
       alert('Sesión caducada! Inicia sesión nuevamente!');
