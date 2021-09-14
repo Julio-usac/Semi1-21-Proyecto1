@@ -39,10 +39,26 @@ app.get('/', function (req, res) {
 });
 
 
+app.post('/agregaramigo', function (req, res) {
+  
+  var sql="insert into amigo(id_usuario,id_cuate) values ("+req.body.idusuario+","+req.body.idcuate+");"
+
+  connection.query(sql, async function(error,result){
+    if(error){
+      console.log("Error al conectar");
+      res.json({mensaje:"error"});
+    }else{
+      console.log(JSON.stringify(result));
+      res.json({mensaje:"Ya son cuates"});
+    }
+  });
+});
+
+
 app.post('/getusuario', function (req, res) {
 
 
-  var sql="select usuario.nombre, usuario.foto, count(tipo) as cantidad from usuario, archivo where id_usuario=id_usu and tipo='publico'\
+  var sql="select usuario.nombre, usuario.id_usuario as idusuario, usuario.foto, count(tipo) as cantidad from usuario, archivo where id_usuario=id_usu and tipo='publico'\
    and usuario.nombre='"+req.body.nombre+"';";
   connection.query(sql, async function(error,result){
     if(error){
