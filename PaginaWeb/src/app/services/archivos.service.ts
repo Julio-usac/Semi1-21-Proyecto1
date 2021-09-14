@@ -7,8 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class ArchivosService {
 
-  //url:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/getarchivos";
-  url:string = "http://localhost:9000/getarchivos";
+  url:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/getarchivos";
 
   constructor(private httpClient: HttpClient) { }
 
