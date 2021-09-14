@@ -58,8 +58,8 @@ app.post('/agregaramigo', function (req, res) {
 app.post('/getusuario', function (req, res) {
 
 
-  var sql="select usuario.nombre, usuario.id_usuario as idusuario, usuario.foto, count(tipo) as cantidad from usuario, archivo where id_usuario=id_usu and tipo='publico'\
-   and usuario.nombre='"+req.body.nombre+"';";
+  var sql="select usuario.nombre, usuario.foto, cantidad from(select usuario.nombre, usuario.foto, count(tipo) as cantidad from usuario, archivo where id_usuario=id_usu \
+  and tipo='publico' and usuario.nombre='"+req.body.nombre+"') as otra, usuario where usuario.nombre='"+req.body.nombre+"';";
   connection.query(sql, async function(error,result){
     if(error){
       console.log("Error al conectar");
