@@ -38,9 +38,26 @@ app.get('/', function (req, res) {
 
 });
 
+
+app.post('/obtenerpublicos', function (req, res) {
+
+  var sql="select usuario.id_usuario as idusuario,usuario.nombre as nombreusuario, archivo.nombre as nombrearchivo, archivo.id_archivo as idarchivo from usuario, archivo \
+  where id_usuario=id_usu and tipo='publico' and usuario.id_usuario!="+req.body.id+";";
+  
+  connection.query(sql, async function(error,result){
+    if(error){
+      console.log("Error al conectar");
+      res.json({mensaje:"error"});
+    }else{
+      console.log(JSON.stringify(result));
+      res.json(result);
+    }
+  });
+});
+
 app.post('/getusuarios', function (req, res) {
 
-  var sql="select usuario.id_usuario,usuario.nombre,usuario.foto, count(tipo) as cantidad from usuario, archivo \
+  var sql="select usuario.id_usuario as idusuario,usuario.nombre,usuario.foto, count(tipo) as cantidad from usuario, archivo \
   where id_usuario=id_usu and tipo='publico' and usuario.id_usuario!="+req.body.id+" group by usuario.nombre, usuario.foto;";
   
   connection.query(sql, async function(error,result){
@@ -55,18 +72,41 @@ app.post('/getusuarios', function (req, res) {
 });
 
 app.post('/agregaramigo', function (req, res) {
-  
-  var sql="insert into amigo(id_usuario,id_cuate) values ("+req.body.idusuario+","+req.body.idcuate+");"
+
+  var sql="select id_cuate from amigo where id_usuario="+req.body.idusuario+" and id_cuate="+req.body.idcuate+";"
 
   connection.query(sql, async function(error,result){
     if(error){
+
       console.log("Error al conectar");
-      res.json({mensaje:"error"});
+      res.json({mensaje:"Error en consulta agreagaramigo"});
+
     }else{
+
       console.log(JSON.stringify(result));
-      res.json({mensaje:"Ya son cuates"});
+
+      if (result.length!=0){
+
+        res.json({mensaje:"Error, este usuario ya era tu amigo"});
+
+      }else{
+
+        sql="insert into amigo(id_usuario,id_cuate) values ("+req.body.idusuario+","+req.body.idcuate+");"
+
+        connection.query(sql, async function(error,result){
+          if(error){
+            console.log("Error al conectar");
+            res.json({mensaje:"Error en consulta agreagaramigo 2"});
+          }else{
+            console.log(JSON.stringify(result));
+            res.json({mensaje:"Ya son cuates"});
+          }
+        });
+      }
     }
   });
+  
+  
 });
 
 
