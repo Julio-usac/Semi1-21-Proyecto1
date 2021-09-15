@@ -8,6 +8,8 @@ import { UploadComponent } from './components/upload/upload.component';
 import { DeleteComponent } from './components/delete/delete.component';
 import { UpdateComponent } from './components/update/update.component';
 import { FriendsComponent } from './components/friends/friends.component';
+import { PublicsComponent } from './components/publics/publics.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,14 @@ const routes: Routes = [
   {
     path: 'addFriends',
     component: FriendsComponent
+  },
+  {
+    path: 'publicFiles',
+    component: PublicsComponent
+  },
+  {
+    path: '**',
+    component: ErrorComponent
   }
 ];
 

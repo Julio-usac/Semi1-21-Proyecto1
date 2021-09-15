@@ -1,1 +1,38 @@
-<p>publics works!</p>
+<div class="publics-fondo">
+    <mat-card class= "publics-card">
+
+        <div>
+            <mat-form-field style="width: 700px;" color="primary" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre Archivo" [(ngModel)]="nombreA">
+                <button mat-icon-button matSuffix (click)=buscar()>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <mat-card-title style="color: #3f51b5;">Archivos</mat-card-title>
+
+        <div style="overflow: auto; height: 330px; margin-top: 20px;">
+            <mat-grid-list cols="3" rowHeight="1:1" gutterSize="10px">
+                <!--<mat-grid-tile *ngFor="let usuario of usuarios" style="background-color: #E1E9EE;">
+                    <div style="margin-top: 20px;">
+                        <img src={{getFoto(usuario.foto)}} width="120" height="120">
+                        <br>
+                        <a>{{usuario.nombre}}</a>
+                        <br>
+                        <a>{{getPublicos(usuario.cantidad)}}</a>
+                        <br>
+                        <button mat-raised-button color="primary"  style="width: 120px;" (click)="follow(usuario.idusuario)">Seguir</button>
+                    </div>
+                </mat-grid-tile>-->
+            </mat-grid-list>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button mat-mini-fab color="accent" routerLink="/home">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</div>

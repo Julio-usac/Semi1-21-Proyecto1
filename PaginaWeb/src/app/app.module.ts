@@ -25,6 +25,7 @@ import { DeleteComponent } from './components/delete/delete.component';
 import { UpdateComponent } from './components/update/update.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { PublicsComponent } from './components/publics/publics.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PublicsComponent } from './components/publics/publics.component';
     DeleteComponent,
     UpdateComponent,
     FriendsComponent,
-    PublicsComponent
+    PublicsComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
