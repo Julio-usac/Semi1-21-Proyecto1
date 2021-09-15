@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 
 });
 
-app.get('/getusuarios', function (req, res) {
+app.post('/getusuarios', function (req, res) {
 
   var sql="select usuario.id_usuario,usuario.nombre,usuario.foto, count(tipo) as cantidad from usuario, archivo \
   where id_usuario=id_usu and tipo='publico' and usuario.id_usuario!="+req.usuario.id+" group by usuario.nombre, usuario.foto;";
