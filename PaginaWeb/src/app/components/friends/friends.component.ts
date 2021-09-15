@@ -22,10 +22,10 @@ export class FriendsComponent implements OnInit {
   ngOnInit(): void {
     this.idUsuario = localStorage.getItem('id');
 
-    /*if (this.idUsuario == '0' || this.idUsuario == 'S;G') {
+    if (this.idUsuario == '0' || this.idUsuario == 'S;G') {
       alert('Sesión caducada! Inicia sesión nuevamente!');
       this.cerrarSesion();
-    }*/
+    }
 
     this.getUsuarios();
   }
@@ -63,10 +63,12 @@ export class FriendsComponent implements OnInit {
     let respuesta = await this.AmigosService.follow(this.idUsuario, idusuario);
     const obj = JSON.parse(JSON.stringify(respuesta));
 
-    if (obj.mensaje == "error") {
+    if (obj.mensaje == "Error en consulta agreagaramigo" || obj.mensaje == "Error en consulta agreagaramigo 2") {
       alert('Error de conexion!');
-    } else {
-      alert('Ahora sigues al usuario!');
+    } else if (obj.mensaje == "Error, este usuario ya era tu amigo") {
+      alert('ya sigues a este usuario!');
+    } else if (obj.mensaje == "Ya son cuates") {
+      alert('Ahora sigues a este usuario!');
     }
   }
 }
