@@ -24,6 +24,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { DeleteComponent } from './components/delete/delete.component';
 import { UpdateComponent } from './components/update/update.component';
 import { FriendsComponent } from './components/friends/friends.component';
+import { PublicsComponent } from './components/publics/publics.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FriendsComponent } from './components/friends/friends.component';
     UploadComponent,
     DeleteComponent,
     UpdateComponent,
-    FriendsComponent
+    FriendsComponent,
+    PublicsComponent
   ],
   imports: [
     BrowserModule,
