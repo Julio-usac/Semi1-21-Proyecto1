@@ -44,8 +44,9 @@ export class FriendsComponent implements OnInit {
   }
 
   async getUsuarios() {
-    this.respuesta = await this.AmigosService.getUsuarios();
+    this.respuesta = await this.AmigosService.getUsuarios(this.idUsuario);
     this.usuarios = JSON.parse(JSON.stringify(this.respuesta));
+    console.log(this.usuarios)
   }
 
   async buscar(){
@@ -53,11 +54,19 @@ export class FriendsComponent implements OnInit {
       this.getUsuarios();
     } else {
       this.respuesta = await this.AmigosService.buscar(this.nombreB);
-    this.usuarios = JSON.parse(JSON.stringify(this.respuesta));
+      this.usuarios = JSON.parse(JSON.stringify(this.respuesta));
     }
   }
 
-  follow(idusuario:string){
+  async follow(idusuario:string){
+    console.log(idusuario + " " + this.idUsuario);
+    let respuesta = await this.AmigosService.follow(this.idUsuario, idusuario);
+    const obj = JSON.parse(JSON.stringify(respuesta));
 
+    if (obj.mensaje == "error") {
+      alert('Error de conexion!');
+    } else {
+      alert('Ahora sigues al usuario!');
+    }
   }
 }
