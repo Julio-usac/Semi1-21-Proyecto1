@@ -40,8 +40,8 @@ app.get('/', function (req, res) {
 
 app.get('/getusuarios', function (req, res) {
 
-  var sql="select usuario.id_usuario as idusuario, usuario.nombre, usuario.foto, cantidad from(select usuario.nombre, usuario.foto, count(tipo) as cantidad from usuario, archivo where id_usuario=id_usu \
-  and tipo='publico') as otra, usuario;";
+  var sql="select usuario.id_usuario,usuario.nombre,usuario.foto, count(tipo) as cantidad from usuario, archivo \
+  where id_usuario=id_usu and tipo='publico' group by usuario.nombre, usuario.foto;";
   
   connection.query(sql, async function(error,result){
     if(error){
