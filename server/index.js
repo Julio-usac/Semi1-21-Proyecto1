@@ -41,8 +41,9 @@ app.get('/', function (req, res) {
 
 app.post('/obtenerpublicos', function (req, res) {
 
-  var sql="select usuario.id_usuario as idusuario,usuario.nombre as nombreusuario, archivo.nombre as nombrearchivo, archivo.id_archivo as idarchivo from usuario, archivo \
-  where id_usuario=id_usu and tipo='publico' and usuario.id_usuario!="+req.body.id+";";
+  var sql="select usuario.id_usuario as idusuario, usuario.nombre as nombreusuario, archivo.nombre as nombrearchivo, archivo.id_archivo as idarchivo \
+  from usuario, amigo, archivo where usuario.id_usuario=amigo.id_cuate \
+  and tipo='publico' and archivo.id_usu=amigo.id_cuate and amigo.id_usuario="+req.body.id+";";
   
   connection.query(sql, async function(error,result){
     if(error){
@@ -92,6 +93,18 @@ app.post('/agregaramigo', function (req, res) {
       }else{
 
         sql="insert into amigo(id_usuario,id_cuate) values ("+req.body.idusuario+","+req.body.idcuate+");"
+
+        connection.query(sql, async function(error,result){
+          if(error){
+            console.log("Error al conectar");
+            res.json({mensaje:"Error en consulta agreagaramigo 2"});
+          }else{
+            console.log(JSON.stringify(result));
+            //res.json({mensaje:"Ya son cuates"});
+          }
+        });
+
+        sql="insert into amigo(id_usuario,id_cuate) values ("+req.body.idcuate+","+req.body.idusuario+");"
 
         connection.query(sql, async function(error,result){
           if(error){
