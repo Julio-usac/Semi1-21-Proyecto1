@@ -35,8 +35,32 @@ export class PublicsComponent implements OnInit {
     this.router.navigate(['login'])
   }
 
-  async getArchivos() {
+  getLink(nombre:string) {
+    var aws = "https://archivos-21-p1.s3.us-east-2.amazonaws.com/fotos/";
 
+    if (nombre.includes('.jpeg') || nombre.includes('.png') || nombre.includes('.jpg')) {
+      return  aws + nombre;
+    } else if (nombre.includes('.pdf')) {
+      return aws + 'logoPDF.png';
+    } else if (nombre.includes('.txt')) {
+      return aws + 'logoTXT.png';
+    }
+  }
+
+  getPropietario(nombre:string) {
+    return "Propietario: " + nombre;
+  }
+
+  getLinkRef(nombre:string) {
+    var aws = "https://archivos-21-p1.s3.us-east-2.amazonaws.com/fotos/";
+
+    return  aws + nombre;
+  }
+
+  async getArchivos() {
+    this.respuesta = await this.PublicosService.getPublicos(this.idUsuario);
+    this.archivos = JSON.parse(JSON.stringify(this.respuesta));
+    console.log(this.archivos)
   }
 
   async buscar(){

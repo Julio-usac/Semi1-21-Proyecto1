@@ -41,8 +41,11 @@ app.get('/', function (req, res) {
 
 app.post('/obtenerpublicos', function (req, res) {
 
-  var sql="select usuario.id_usuario as idusuario,usuario.nombre as nombreusuario, archivo.nombre as nombrearchivo, archivo.id_archivo as idarchivo from usuario, archivo \
-  where id_usuario=id_usu and tipo='publico' and usuario.id_usuario!="+req.body.id+";";
+  var sql="SELECT archivo.id_archivo AS idarchivo, archivo.nombre, usuario.nombre AS usuario FROM archivo \
+  INNER JOIN usuario ON usuario.id_usuario = archivo.id_usu \
+  WHERE archivo.tipo = 'publico' and  usuario.id_usuario IN ( \
+    SELECT id_cuate FROM amigo Where id_usuario = '"+req.body.id+"' \
+  );";
   
   connection.query(sql, async function(error,result){
     if(error){
@@ -102,6 +105,7 @@ app.post('/agregaramigo', function (req, res) {
             res.json({mensaje:"Ya son cuates"});
           }
         });
+        
       }
     }
   });
