@@ -100,21 +100,10 @@ app.post('/agregaramigo', function (req, res) {
             res.json({mensaje:"Error en consulta agreagaramigo 2"});
           }else{
             console.log(JSON.stringify(result));
-            //res.json({mensaje:"Ya son cuates"});
-          }
-        });
-
-        sql="insert into amigo(id_usuario,id_cuate) values ("+req.body.idcuate+","+req.body.idusuario+");"
-
-        connection.query(sql, async function(error,result){
-          if(error){
-            console.log("Error al conectar");
-            res.json({mensaje:"Error en consulta agreagaramigo 2"});
-          }else{
-            console.log(JSON.stringify(result));
             res.json({mensaje:"Ya son cuates"});
           }
         });
+
       }
     }
   });
