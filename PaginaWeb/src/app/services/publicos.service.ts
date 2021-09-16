@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 
 export class PublicosService {
 
-  url1:string = "http://localhost:9000/obtenerpublicos";
-  url2:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/";
+  url1:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/obtenerpublicos";
+  url2:string = "http://bc-21-p1-290798132.us-east-2.elb.amazonaws.com:9000/obtenerpublico";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,7 +18,9 @@ export class PublicosService {
     return this.httpClient.post(this.url1, data).toPromise();
   }
 
-  getBuscar() {
+  buscar(id:string, nombre:string) {
+    const data = { id, nombre }
 
+    return this.httpClient.post(this.url2, data).toPromise();
   }
 }

@@ -60,15 +60,14 @@ export class PublicsComponent implements OnInit {
   async getArchivos() {
     this.respuesta = await this.PublicosService.getPublicos(this.idUsuario);
     this.archivos = JSON.parse(JSON.stringify(this.respuesta));
-    console.log(this.archivos)
   }
 
   async buscar(){
     if (this.nombreA == "") {
       this.getArchivos();
     } else {
-      /*this.respuesta = await this.AmigosService.buscar(this.nombreB);
-      this.usuarios = JSON.parse(JSON.stringify(this.respuesta));*/
+      this.respuesta = await this.PublicosService.buscar(this.idUsuario, this.nombreA);
+      this.archivos = JSON.parse(JSON.stringify(this.respuesta));
     }
   }
 }
